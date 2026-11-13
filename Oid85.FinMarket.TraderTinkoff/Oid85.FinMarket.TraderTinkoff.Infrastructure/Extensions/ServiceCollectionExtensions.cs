@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Repositories;
 using Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Services;
 using Oid85.FinMarket.TraderTinkoff.Common.KnownConstants;
+using Oid85.FinMarket.TraderTinkoff.Common.Utils;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Database;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Repositories;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Services;
@@ -31,11 +32,15 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IOutboxRepository, OutboxRepository>();
     }
 
-    public static void ConfigureTinkoffGrpcClient(
+    public static void ConfigureInvestApiClient(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-
+        services.AddInvestApiClient((_, settings) =>
+        {
+            settings.AccessToken = StringUtils.Base64Decode(
+                configuration.GetValue<string>(KnownSettingsKeys.TinkoffToken)!);
+        });
     }
 
     public static void ConfigureInfrastructureServices(

@@ -26,7 +26,7 @@ namespace Oid85.FinMarket.TraderTinkoff.WebHost
             builder.Services.ConfigureCors(builder.Configuration);
             builder.Services.ConfigureHangfire();
             builder.Services.ConfigureDatabase(builder.Configuration);
-            builder.Services.ConfigureTinkoffGrpcClient(builder.Configuration);
+            builder.Services.ConfigureInvestApiClient(builder.Configuration);
             builder.Services.ConfigureApplicationServices();
             builder.Services.ConfigureInfrastructureServices();
 

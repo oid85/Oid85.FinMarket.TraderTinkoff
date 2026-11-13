@@ -5,5 +5,5 @@ public static class KnownSettingsKeys
     public const string PostgresFinMarketTraderTinkoffConnectionString = "Postgres:FinMarketTraderTinkoffConnectionString";
     public const string PostgresApplyMigrationsOnStart = "Postgres:ApplyMigrationsOnStart";
     public const string DeployPort = "DeployPort";
-    public const string FinamGrpcUrl = "FinamGrpc:Url";
+    public const string TinkoffToken = "Tinkoff:Token";
 }
