@@ -9,6 +9,7 @@ public class TraderTinkoffContext(DbContextOptions<TraderTinkoffContext> options
 {
     public DbSet<ParameterEntity> ParameterEntities { get; set; }
     public DbSet<OutboxTaskEntity> OutboxTaskEntities { get; set; }
+    public DbSet<InstrumentEntity> InstrumentEntities { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

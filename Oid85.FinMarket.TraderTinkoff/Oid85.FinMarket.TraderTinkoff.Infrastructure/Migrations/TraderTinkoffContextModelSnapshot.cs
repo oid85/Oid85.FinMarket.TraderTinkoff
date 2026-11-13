@@ -23,6 +23,36 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityAlwaysColumns(modelBuilder);
 
+            modelBuilder.Entity("Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Entities.InstrumentEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Figi")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Ticker")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InstrumentEntities", "public");
+                });
+
             modelBuilder.Entity("Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Entities.OutboxTaskEntity", b =>
                 {
                     b.Property<Guid>("Id")
