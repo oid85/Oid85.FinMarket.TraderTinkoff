@@ -8,12 +8,12 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Services
     /// <inheritdoc />
     public class TraderService(
         IOutboxRepository outboxRepository,
-        IBrokerService finamService)
+        IBrokerService brokerService)
         : ITraderService
     {
         /// <inheritdoc />
         public Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request) => 
-            finamService.GetPortfolioInfoAsync(request);
+            brokerService.GetPortfolioInfoAsync(request);
 
         /// <inheritdoc />
         public async Task<OutboxTaskListResponse> GetOutboxTaskListAsync(OutboxTaskListRequest request) =>
@@ -21,6 +21,6 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Services
 
         /// <inheritdoc />
         public Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request) =>
-            finamService.GetInstrumentPriceAsync(request);
+            brokerService.GetInstrumentPriceAsync(request);
     }
 }

@@ -8,6 +8,7 @@ using Oid85.FinMarket.TraderTinkoff.Common.KnownConstants;
 using Oid85.FinMarket.TraderTinkoff.Common.Utils;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Database;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Repositories;
+using Oid85.FinMarket.TraderTinkoff.Infrastructure.Helpers;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Services;
 
 namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Extensions;
@@ -41,6 +42,8 @@ public static class ServiceCollectionExtensions
             settings.AccessToken = StringUtils.Base64Decode(
                 configuration.GetValue<string>(KnownSettingsKeys.TinkoffToken)!);
         });
+
+        services.AddTransient<GetPricesHelper>();
     }
 
     public static void ConfigureInfrastructureServices(
