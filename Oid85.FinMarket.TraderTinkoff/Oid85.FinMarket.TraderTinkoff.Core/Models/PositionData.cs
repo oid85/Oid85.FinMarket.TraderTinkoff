@@ -4,9 +4,9 @@
     {
         public string Ticker { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public double Size { get; set; }
-        public double Cost { get; set; }
-        public double CurrentPrice { get; set; }
-        public double DailyPnl { get; set; }
+        public int Size { get; set; }
+        public decimal Cost { get; set; }
+        public decimal CurrentPrice { get; set; }
+        public decimal DailyPnl { get; set; }
     }
 }

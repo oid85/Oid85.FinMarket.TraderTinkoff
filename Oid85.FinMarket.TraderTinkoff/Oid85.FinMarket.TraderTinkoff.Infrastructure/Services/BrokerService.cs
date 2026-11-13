@@ -61,24 +61,24 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Services
                 {             
                     Name = name,
                     Ticker = ticker,
-                    Size = size,
-                    CurrentPrice = price,
-                    Cost = cost,
-                    DailyPnl = dailyPnl
+                    Size = Convert.ToInt32(size),
+                    CurrentPrice = Convert.ToDecimal(price),
+                    Cost = Convert.ToDecimal(cost),
+                    DailyPnl = Convert.ToDecimal(dailyPnl)
                 };
 
                 positions.Add(positionData);
             }
 
             double totalDailyPnl = ConvertHelper.MoneyValueToDouble(portfolioResponse.DailyYield).RoundTo(2);
-            double totalSumm = ConvertHelper.MoneyValueToDouble(portfolioResponse.TotalAmountPortfolio).RoundTo(2);
+            double totalSum = ConvertHelper.MoneyValueToDouble(portfolioResponse.TotalAmountPortfolio).RoundTo(2);
             double money = ConvertHelper.QuotationToDouble(portfolioResponse.Positions.FirstOrDefault(x => x.Figi == "RUB000UTSTOM")?.Quantity ?? 0).RoundTo(2);
 
             return new PortfolioInfoResponse
             {
-                TotalSum = totalSumm,
-                Money = money,
-                TotalDailyPnl = totalDailyPnl,
+                TotalSum = Convert.ToDecimal(totalSum),
+                Money = Convert.ToDecimal(money),
+                TotalDailyPnl = Convert.ToDecimal(totalDailyPnl),
                 Positions = positions
             };
         }
