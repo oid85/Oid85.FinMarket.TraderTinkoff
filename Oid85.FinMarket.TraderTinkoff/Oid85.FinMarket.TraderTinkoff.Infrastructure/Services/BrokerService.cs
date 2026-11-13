@@ -1,7 +1,10 @@
-﻿using Grpc.Net.ClientFactory;
+﻿using System.Timers;
+using Grpc.Net.ClientFactory;
 using Microsoft.Extensions.Configuration;
 using Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Repositories;
 using Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Services;
+using Oid85.FinMarket.TraderTinkoff.Common.Extensions;
+using Oid85.FinMarket.TraderTinkoff.Core.Models;
 using Oid85.FinMarket.TraderTinkoff.Core.Requests;
 using Oid85.FinMarket.TraderTinkoff.Core.Responses;
 using Oid85.FinMarket.TraderTinkoff.Infrastructure.Helpers;
@@ -25,20 +28,58 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Services
         /// <inheritdoc />
         public async Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request)
         {
-            request.AccountName = "Брокерский счёт 1";
-
             var instruments = await instrumentRepository.GetAsync();
 
             var accounts = await client.Users.GetAccountsAsync();
             string accountId = accounts.Accounts.FirstOrDefault(x => x.Name == request.AccountName)!.Id;
 
-            var portfolio = await client.Operations.GetPortfolioAsync(
+            var portfolioResponse = await client.Operations.GetPortfolioAsync(
                 new Tinkoff.InvestApi.V1.PortfolioRequest
                 { 
                     AccountId = accountId
                 });
 
-            return new ();
+            var positions = new List<PositionData>();            
+
+            foreach (var item in portfolioResponse.Positions)
+            {
+                if (item.Figi == "USD800UTSTOM") continue; // USD
+                if (item.Figi == "RUB000UTSTOM") continue; // RUB
+
+                string ticker = item.Figi switch
+                {
+                    "BBG000VJ5YR4" => "GOLD",
+                    _ => instruments.Find(x => x.Figi == item.Figi)?.Ticker ?? string.Empty
+                };
+                
+                double size = ConvertHelper.QuotationToDouble(item.Quantity).RoundTo(2);
+                double price = ConvertHelper.MoneyValueToDouble(item.CurrentPrice).RoundTo(2);
+                double cost = (size * price).RoundTo(2);
+                double dailyPnl = ConvertHelper.MoneyValueToDouble(item.DailyYield).RoundTo(2);
+
+                var positionData = new PositionData
+                {                    
+                    Ticker = ticker,
+                    Size = size,
+                    CurrentPrice = price,
+                    Cost = cost,
+                    DailyPnl = dailyPnl
+                };
+
+                positions.Add(positionData);
+            }
+
+            double totalDailyPnl = ConvertHelper.MoneyValueToDouble(portfolioResponse.DailyYield).RoundTo(2);
+            double totalSumm = ConvertHelper.MoneyValueToDouble(portfolioResponse.TotalAmountPortfolio).RoundTo(2);
+            double money = ConvertHelper.QuotationToDouble(portfolioResponse.Positions.FirstOrDefault(x => x.Figi == "RUB000UTSTOM")?.Quantity ?? 0).RoundTo(2);
+
+            return new PortfolioInfoResponse
+            {
+                TotalSum = totalSumm,
+                Money = money,
+                TotalDailyPnl = totalDailyPnl,
+                Positions = positions
+            };
         }
 
         /// <inheritdoc />
