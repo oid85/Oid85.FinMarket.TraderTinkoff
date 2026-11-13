@@ -51,14 +51,21 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Services
                     "BBG000VJ5YR4" => "GOLD",
                     _ => instruments.Find(x => x.Figi == item.Figi)?.Ticker ?? string.Empty
                 };
-                
+
+                string name = item.Figi switch
+                {
+                    "BBG000VJ5YR4" => "Золото",
+                    _ => instruments.Find(x => x.Figi == item.Figi)?.Name ?? string.Empty
+                };
+
                 double size = ConvertHelper.QuotationToDouble(item.Quantity).RoundTo(2);
                 double price = ConvertHelper.MoneyValueToDouble(item.CurrentPrice).RoundTo(2);
                 double cost = (size * price).RoundTo(2);
                 double dailyPnl = ConvertHelper.MoneyValueToDouble(item.DailyYield).RoundTo(2);
 
                 var positionData = new PositionData
-                {                    
+                {             
+                    Name = name,
                     Ticker = ticker,
                     Size = size,
                     CurrentPrice = price,

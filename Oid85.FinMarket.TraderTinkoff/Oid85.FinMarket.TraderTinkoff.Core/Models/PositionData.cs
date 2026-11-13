@@ -2,7 +2,8 @@
 {
     public class PositionData
     {
-        public string Ticker { get; set; } = string.Empty;        
+        public string Ticker { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public double Size { get; set; }
         public double Cost { get; set; }
         public double CurrentPrice { get; set; }
