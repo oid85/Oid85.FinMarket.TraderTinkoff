@@ -12,5 +12,7 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Entities
         public string Ticker { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string Currency { get; set; } = string.Empty;
+        public int Lot { get; set; }
     }
 }

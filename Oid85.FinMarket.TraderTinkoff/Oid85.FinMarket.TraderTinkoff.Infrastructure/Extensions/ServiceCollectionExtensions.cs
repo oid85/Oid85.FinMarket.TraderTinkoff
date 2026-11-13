@@ -31,6 +31,7 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<IParameterRepository, ParameterRepository>();
         services.AddTransient<IOutboxRepository, OutboxRepository>();
+        services.AddTransient<IInstrumentRepository, InstrumentRepository>();
     }
 
     public static void ConfigureInvestApiClient(
