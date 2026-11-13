@@ -20,9 +20,6 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Services
             new() { Tasks = await outboxRepository.GetAsync() };
 
         /// <inheritdoc />
-        public Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request) =>
-            brokerService.GetInstrumentPriceAsync(request);
-
         public Task LoadInstrumentsAsync() =>
             brokerService.LoadInstrumentsAsync();
     }

@@ -18,19 +18,6 @@ public class InstrumentsController(
     : BaseController
 {
     /// <summary>
-    /// Получить цены
-    /// </summary>
-    [HttpPost("price")]
-    [ProducesResponseType(typeof(BaseResponse<GetInstrumentPriceResponse>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(BaseResponse<GetInstrumentPriceResponse>), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(BaseResponse<GetInstrumentPriceResponse>), StatusCodes.Status500InternalServerError)]
-    public Task<IActionResult> GetInstrumentPriceAsync(
-        [FromBody] GetInstrumentPriceRequest request) =>
-        GetResponseAsync(
-            () => traderService.GetInstrumentPriceAsync(request),
-            result => new BaseResponse<GetInstrumentPriceResponse> { Result = result });
-
-    /// <summary>
     /// Загрузить инструменты
     /// </summary>
     [HttpPost("load-instruments")]

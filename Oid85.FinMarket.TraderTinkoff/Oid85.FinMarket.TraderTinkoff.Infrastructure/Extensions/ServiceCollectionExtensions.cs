@@ -44,7 +44,6 @@ public static class ServiceCollectionExtensions
                 configuration.GetValue<string>(KnownSettingsKeys.TinkoffToken)!);
         });
 
-        services.AddTransient<GetPricesHelper>();
         services.AddTransient<GetInstrumentsHelper>();
     }
 

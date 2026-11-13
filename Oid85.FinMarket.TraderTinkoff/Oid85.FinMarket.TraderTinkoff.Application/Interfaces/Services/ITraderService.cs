@@ -10,7 +10,6 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Services
     {
         Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request);
         Task<OutboxTaskListResponse> GetOutboxTaskListAsync(OutboxTaskListRequest request);
-        Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request);
         Task LoadInstrumentsAsync();
     }
 }

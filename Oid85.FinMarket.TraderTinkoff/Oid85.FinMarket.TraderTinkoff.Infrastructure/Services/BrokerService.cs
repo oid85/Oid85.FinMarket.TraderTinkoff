@@ -20,12 +20,6 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Services
         : IBrokerService
     {
         /// <inheritdoc />
-        public async Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request)
-        {            
-            return new ();
-        }
-
-        /// <inheritdoc />
         public async Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request)
         {
             var instruments = await instrumentRepository.GetAsync();

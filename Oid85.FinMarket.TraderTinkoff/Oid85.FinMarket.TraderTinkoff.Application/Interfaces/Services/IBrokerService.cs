@@ -9,11 +9,6 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Services
     public interface IBrokerService
     {
         /// <summary>
-        /// Получить цену по тикеру
-        /// </summary>
-        Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request);
-
-        /// <summary>
         /// Получить текущее состояние портфеля
         /// </summary>
         Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request);
