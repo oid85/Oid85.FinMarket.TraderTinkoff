@@ -29,12 +29,19 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Figi")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("InstrumentId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Lot")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()

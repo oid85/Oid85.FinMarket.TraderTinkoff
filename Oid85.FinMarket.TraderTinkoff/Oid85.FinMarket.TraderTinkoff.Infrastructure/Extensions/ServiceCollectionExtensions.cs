@@ -45,6 +45,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddTransient<GetPricesHelper>();
+        services.AddTransient<GetInstrumentsHelper>();
     }
 
     public static void ConfigureInfrastructureServices(

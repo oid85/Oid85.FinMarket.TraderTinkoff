@@ -32,6 +32,7 @@ public class GetInstrumentsHelper(
                 var instrument = new Instrument
                 {
                     InstrumentId = Guid.Parse(tinkoffInstrument.Uid),
+                    Figi = tinkoffInstrument.Figi,
                     Ticker = tinkoffInstrument.Ticker,                    
                     Name = tinkoffInstrument.Name,
                     Currency = tinkoffInstrument.Currency,
@@ -68,6 +69,7 @@ public class GetInstrumentsHelper(
                 var instrument = new Instrument
                 {
                     InstrumentId = Guid.Parse(tinkoffInstrument.Uid),
+                    Figi = tinkoffInstrument.Figi,
                     Ticker = tinkoffInstrument.Ticker,
                     Name = tinkoffInstrument.Name,
                     Currency = tinkoffInstrument.Currency,
@@ -106,6 +108,7 @@ public class GetInstrumentsHelper(
                 var instrument = new Instrument
                 {
                     InstrumentId = Guid.Parse(tinkoffInstrument.Uid),
+                    Figi = tinkoffInstrument.Figi,
                     Ticker = tinkoffInstrument.Ticker,
                     Name = tinkoffInstrument.Name,
                     Currency = tinkoffInstrument.Currency,
@@ -143,6 +146,7 @@ public class GetInstrumentsHelper(
                 var instrument = new Instrument
                 {
                     InstrumentId = Guid.Parse(tinkoffInstrument.Uid),
+                    Figi = tinkoffInstrument.Figi,
                     Ticker = tinkoffInstrument.Ticker,
                     Name = tinkoffInstrument.Name,
                     Currency = tinkoffInstrument.Currency,
@@ -179,6 +183,7 @@ public class GetInstrumentsHelper(
                 var instrument = new Instrument
                 {
                     InstrumentId = Guid.Parse(tinkoffInstrument.Uid),
+                    Figi = tinkoffInstrument.Figi,
                     Ticker = tinkoffInstrument.Ticker.Replace("@", ""),
                     Name = tinkoffInstrument.Name,
                     Currency = tinkoffInstrument.Currency,

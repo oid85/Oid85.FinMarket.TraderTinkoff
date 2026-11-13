@@ -22,5 +22,8 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Services
         /// <inheritdoc />
         public Task<GetInstrumentPriceResponse> GetInstrumentPriceAsync(GetInstrumentPriceRequest request) =>
             brokerService.GetInstrumentPriceAsync(request);
+
+        public Task LoadInstrumentsAsync() =>
+            brokerService.LoadInstrumentsAsync();
     }
 }

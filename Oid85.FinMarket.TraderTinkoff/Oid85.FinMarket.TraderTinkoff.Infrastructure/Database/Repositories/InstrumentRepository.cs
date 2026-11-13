@@ -18,6 +18,9 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Repositories
             var instrumentIds = entities.Select(x => x.InstrumentId).ToList();
             var insertModels = models.Where(x => !instrumentIds.Contains(x.InstrumentId)).ToList();
 
+            if (insertModels.Count == 0)
+                return;
+
             var insertEntities = insertModels
                 .Select(x =>
                 new InstrumentEntity
@@ -32,7 +35,7 @@ namespace Oid85.FinMarket.TraderTinkoff.Infrastructure.Database.Repositories
                 })
                 .ToList();
 
-
+            await context.AddRangeAsync(insertEntities);
             await context.SaveChangesAsync();
         }
 

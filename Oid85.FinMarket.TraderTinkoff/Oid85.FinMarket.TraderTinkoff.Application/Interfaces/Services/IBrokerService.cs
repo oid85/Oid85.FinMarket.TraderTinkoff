@@ -17,5 +17,10 @@ namespace Oid85.FinMarket.TraderTinkoff.Application.Interfaces.Services
         /// Получить текущее состояние портфеля
         /// </summary>
         Task<PortfolioInfoResponse> GetPortfolioInfoAsync(PortfolioInfoRequest request);
+        
+        /// <summary>
+        /// Загрузить инструменты
+        /// </summary>        
+        Task LoadInstrumentsAsync();
     }
 }
